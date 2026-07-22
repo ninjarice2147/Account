@@ -20,7 +20,7 @@ public class AddAccountServlet extends HttpServlet {
             "jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
 
     private static final String DB_USER = "jsp_user";
-    private static final String DB_PASSWORD = "你的jsp_user密碼";
+    private static final String DB_PASSWORD = "Cookie1007";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
