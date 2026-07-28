@@ -4,26 +4,52 @@ import java.math.BigDecimal;
 
 public class Receivable{
 	private int id;
-	private String customer_name;
+	private String customerName;
 	private String title;
 	private BigDecimal amount;
-	private String expected_date;
+	private String expectedDate;
 	private String status;
 	private String note;
-	private String created_at;
-	private String updated_at;
-	public Receivable(int id,String customer_name,String title,BigDecimal amount,
-			String expected_date,String status,String note,String created_at,String updated_at) {
+	private String createdAt;
+	private String updatedAt;
+	public Receivable(int id,String customerName,String title,BigDecimal amount,
+			String expectedDate,String status,String note,String createdAt,String updatedAt) {
 		this.id=id;
-		this.customer_name=customer_name;
+		this.customerName=customerName;
 		this.title=title;
 		this.amount=amount;
-		this.expected_date=expected_date;
+		this.expectedDate=expectedDate;
 		this.status=status;
 		this.note=note;
-		this.created_at=created_at;
-		this.updated_at=updated_at;
+		this.createdAt=createdAt;
+		this.updatedAt=updatedAt;
 	}
-	
+	public int getId(){
+		return id;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public String title() {
+		return title;
+	}
+	public BigDecimal amount(){
+		return amount;
+	}
+	public String expectedDate() {
+		return expectedDate;
+	}
+	public String status() {
+		return status;
+	}
+	public String note() {
+		return note;
+	}
+	public String createdAt() {
+		return createdAt;
+	}
+	public  String updated() {
+		return updatedAt;
+	}
 	
 }
