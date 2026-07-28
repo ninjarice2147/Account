@@ -30,25 +30,25 @@ public class Receivable{
 	public String getCustomerName() {
 		return customerName;
 	}
-	public String title() {
+	public String getTitle() {
 		return title;
 	}
-	public BigDecimal amount(){
+	public BigDecimal getAmount(){
 		return amount;
 	}
-	public String expectedDate() {
+	public String getExpectedDate() {
 		return expectedDate;
 	}
-	public String status() {
+	public String getStatus() {
 		return status;
 	}
-	public String note() {
+	public String getNote() {
 		return note;
 	}
-	public String createdAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
-	public  String updated() {
+	public  String getUpdated() {
 		return updatedAt;
 	}
 	
