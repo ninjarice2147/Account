@@ -27,7 +27,7 @@ public class ReceivableServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request,HttpServletResponse response)
 	throws ServletException,IOException{
 		
-		List<Receivable> receivable=new ArrayList<>();
+		List<Receivable> receivables=new ArrayList<>();
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.driver");
@@ -47,10 +47,10 @@ public class ReceivableServlet extends HttpServlet{
 						String note=rs.getString("note");
 						String createdAt=rs.getString("created_at");
 						String updatedAt=rs.getString("updated_at");
-						receivable.add(new Receivable(id, customerName, title, amount, expectedDate, status, note, createdAt, updatedAt));
+						receivables.add(new Receivable(id, customerName, title, amount, expectedDate, status, note, createdAt, updatedAt));
 					}
-					request.setAttribute("Receivable",receivable);
-					request.getRequestDispatcher("receivable.jsp").forward(request, response);
+					request.setAttribute("receivables",receivables);
+					request.getRequestDispatcher("/receivable/receivable.jsp").forward(request, response);
 					
 				}
 				
