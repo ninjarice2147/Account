@@ -25,7 +25,7 @@ public class DeleteReceivableServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
-				String sql="DELETE FROM account WHERE id = ?";
+				String sql="DELETE FROM receivable WHERE id = ?";
 				try(PreparedStatement stmt=conn.prepareStatement(sql)){
 					stmt.setInt(1, id);
 					stmt.execute();

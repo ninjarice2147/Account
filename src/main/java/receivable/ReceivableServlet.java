@@ -30,11 +30,11 @@ public class ReceivableServlet extends HttpServlet{
 		List<Receivable> receivables=new ArrayList<>();
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
 				
-				String sql=
-					"SELECT id,customer_name,title,amount,expected_date,status,note,created_at,updated_at";
+				String sql = 
+	"SELECT id, customer_name, title, amount, expected_date, status, note, created_at, updated_at FROM receivable ORDER BY id";
 				try(PreparedStatement stmt=conn.prepareStatement(sql);
 					ResultSet rs=stmt.executeQuery()){
 					while(rs.next()) {

@@ -33,8 +33,9 @@ public class UpdateReceivableServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
-				String sql=
-						"UPDATE account SET customerName=?, title=? , amount=?,expectedDate=?,status=?,note=?,WHERE id = ?";
+				String sql = "UPDATE receivable " +
+			             "SET customer_name = ?, title = ?, amount = ?, expected_date = ?, status = ?, note = ? " +
+			             "WHERE id = ?";
 				try(PreparedStatement stmt=conn.prepareStatement(sql)){
 					stmt.setString(1,customerName);
 					stmt.setString(2,title);
@@ -43,7 +44,7 @@ public class UpdateReceivableServlet extends HttpServlet {
 					stmt.setString(5,status);
 					stmt.setString(6,note);
 					stmt.setInt(7, id);
-					stmt.execute();
+					stmt.executeUpdate();
 				}
 				response.sendRedirect(request.getContextPath()+"/receivables");
 			}

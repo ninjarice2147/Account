@@ -10,8 +10,8 @@
 <body>
 	<h1>應收款資料表</h1>
 	<p>
-  		<a href="addReceivable">
-  			<button type="button" >新增</button>
+  		<a href="<%= request.getContextPath() %>/addReceivable">
+  			<button type="button" >新增應收款</button>
   		</a>
   	</p>
 	<hr>
