@@ -100,5 +100,46 @@
 		%>
 		
 	</table>
+	<script>
+        const editUpdateButtons = document.querySelectorAll(".edit-update-btn");
+
+        editUpdateButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                const formId = button.dataset.form;
+                const mode = button.dataset.mode;
+
+                if (mode === "edit") {
+                    const inputs = document.querySelectorAll('[form="' + formId + '"].editable');
+
+                    inputs.forEach(function(input) {
+                        input.removeAttribute("readonly");
+                    });
+
+                    button.textContent = "更新";
+                    button.dataset.mode = "update";
+                } else {
+                    const updateForm = document.getElementById(formId);
+
+                    if (updateForm.requestSubmit) {
+                        updateForm.requestSubmit();
+                    } else {
+                        updateForm.submit();
+                    }
+                }
+            });
+        });
+
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+
+        deleteButtons.forEach(function(button) {
+            button.addEventListener("click", function(event) {
+                const result = confirm("確定要刪除這筆帳戶資料嗎？");
+
+                if (!result) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
   </body>
 </html>
