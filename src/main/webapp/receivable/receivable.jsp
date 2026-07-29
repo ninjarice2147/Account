@@ -59,7 +59,7 @@
 						</td>
 						<td>
 							<input type="number" form="<%=updateFormId%>" name="amount" 
-							value="<%=receivable.getAmount()%>" class="editable" readonly required>
+							value="<%=receivable.getAmount()%>" class="editable" step="0.01" readonly required>
 						</td>
 						<td>
 							<input type="text" form="<%=updateFormId%>" name="expectedDate" 
