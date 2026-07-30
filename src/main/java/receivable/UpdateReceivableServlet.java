@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/updateReceivable")
 public class UpdateReceivableServlet extends HttpServlet {
-	private static final long serialVersion=1L;
+	private static final long serialVersionUID=1L;
 	private static final String DB_URL=
 		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
 	private static final String DB_USER="jsp_user";
@@ -33,9 +33,8 @@ public class UpdateReceivableServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
-				String sql = "UPDATE receivable " +
-			             "SET customer_name = ?, title = ?, amount = ?, expected_date = ?, status = ?, note = ? " +
-			             "WHERE id = ?";
+				String sql =
+					"UPDATE receivable SET customer_name = ?, title = ?, amount = ?, expected_date = ?, status = ?, note = ? WHERE id = ?";
 				try(PreparedStatement stmt=conn.prepareStatement(sql)){
 					stmt.setString(1,customerName);
 					stmt.setString(2,title);

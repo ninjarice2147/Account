@@ -42,9 +42,8 @@ public class AddReceivableServlet extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
-				String sql = "INSERT INTO receivable " +
-			             "(customer_name, title, amount, expected_date, status, note) " +
-			             "VALUES (?, ?, ?, ?, ?, ?)";
+				String sql = 
+						"INSERT INTO receivable (customer_name, title, amount, expected_date, status, note) VALUES (?, ?, ?, ?, ?, ?)";
 				try(PreparedStatement stmt=conn.prepareStatement(sql)){
 					stmt.setString(1,customerName);
 					stmt.setString(2,title);

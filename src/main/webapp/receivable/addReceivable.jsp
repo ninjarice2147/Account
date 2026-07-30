@@ -3,10 +3,10 @@
 <html lang="zh-Hant" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>新增帳戶</title>
+    <title>新增收款項目</title>
   </head>
   <body>
-	<h1>新增帳戶</h1>
+	<h1>新增收款項目</h1>
 	<form action="<%=request.getContextPath()%>/addReceivable" method="post">
 		<p>
 			客戶名稱
@@ -18,7 +18,7 @@
 		</p>
 		<p>
 			金額
-			<input type="number" name="amount" required="required">
+			<input type="number" name="amount" step="0.01" required="required">
 		</p>
 		<p>	
 			預計收款日

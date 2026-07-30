@@ -14,11 +14,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import receivable.Receivable;
 
 @WebServlet("/payables")
 public class PayableServlet extends HttpServlet {
-	private static final long serialVersion=1L;
+	private static final long serialVersionUID=1L;
 	private static final String DB_URL=
 		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
 	private static final String DB_USER="jsp_user";

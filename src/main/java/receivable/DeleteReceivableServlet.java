@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/deleteReceivable")
 public class DeleteReceivableServlet extends HttpServlet {
-	private static final long serialVersion=1L;
+	private static final long serialVersionUID=1L;
 	private static final String DB_URL=
 		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
 	private static final String DB_USER="jsp_user";
