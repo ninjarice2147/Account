@@ -62,7 +62,7 @@
 							value="<%=receivable.getAmount()%>" class="editable" step="0.01" readonly required>
 						</td>
 						<td>
-							<input type="text" form="<%=updateFormId%>" name="expectedDate" 
+							<input type="date" form="<%=updateFormId%>" name="expectedDate" 
 							value="<%=receivable.getExpectedDate()%>" class="editable" readonly required>
 						</td>
 						<td>

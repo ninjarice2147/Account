@@ -17,12 +17,12 @@
 			<input type="text" name="title" required="required">
 		</p>
 		<p>
-			收款項目
-			<input type="text" name="amount" required="required">
+			金額
+			<input type="number" name="amount" required="required">
 		</p>
 		<p>	
 			預計收款日
-			<input type="text" name="expectedDate" required="required">
+			<input type="date" name="expectedDate" required="required">
 		</p>
 		<p>
 			狀態(是否已收)
@@ -30,7 +30,7 @@
 		</p>
 		<p>
 			備註
-			<input type="text" name="note" required="required">
+			<input type="text" name="note" >
 		</p>
 		<button type="submit">新增</button>
 	</form>
