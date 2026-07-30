@@ -48,7 +48,7 @@ public class Receivable{
 	public String getCreatedAt() {
 		return createdAt;
 	}
-	public  String getUpdated() {
+	public  String getUpdatedAt() {
 		return updatedAt;
 	}
 	

@@ -77,7 +77,7 @@
 							<%=receivable.getCreatedAt()%>
 						</td>
 						<td>
-							<%=receivable.getUpdated()%>
+							<%=receivable.getUpdatedAt()%>
 						</td>
 						<td>
 							<button type="button" class="edit-update-btn"

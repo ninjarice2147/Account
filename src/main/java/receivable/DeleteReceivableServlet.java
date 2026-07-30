@@ -18,7 +18,7 @@ public class DeleteReceivableServlet extends HttpServlet {
 		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
 	private static final String DB_USER="jsp_user";
 	private static final String DB_PASSWORD="Cookie1007";
-	
+	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException,IOException {
 		int id=Integer.parseInt(request.getParameter("id"));
