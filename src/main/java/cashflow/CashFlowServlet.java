@@ -70,11 +70,17 @@ public class CashFlowServlet extends HttpServlet {
 
                 BigDecimal beginningCash = getCurrentCash(conn);
 
-                Map<String, BigDecimal> receivableMap =
+                Map<String, BigDecimal> monthlyReceivableMap =
                         getMonthlyTotal(conn, "receivable", startDate, endDateExclusive);
 
-                Map<String, BigDecimal> payableMap =
+                Map<String, BigDecimal> monthlyPayableMap =
                         getMonthlyTotal(conn, "payable", startDate, endDateExclusive);
+
+                Map<LocalDate, BigDecimal> dailyReceivableMap =
+                        getDailyTotal(conn, "receivable", startDate, endDateExclusive);
+
+                Map<LocalDate, BigDecimal> dailyPayableMap =
+                        getDailyTotal(conn, "payable", startDate, endDateExclusive);
 
                 YearMonth currentMonth = startMonth;
 
@@ -82,10 +88,10 @@ public class CashFlowServlet extends HttpServlet {
                     String monthKey = currentMonth.toString();
 
                     BigDecimal monthlyReceivable =
-                            receivableMap.getOrDefault(monthKey, BigDecimal.ZERO);
+                            monthlyReceivableMap.getOrDefault(monthKey, BigDecimal.ZERO);
 
                     BigDecimal monthlyPayable =
-                            payableMap.getOrDefault(monthKey, BigDecimal.ZERO);
+                            monthlyPayableMap.getOrDefault(monthKey, BigDecimal.ZERO);
 
                     BigDecimal netCashFlow =
                             monthlyReceivable.subtract(monthlyPayable).subtract(fixedExpense);
@@ -94,7 +100,13 @@ public class CashFlowServlet extends HttpServlet {
                             beginningCash.add(netCashFlow);
 
                     BigDecimal minimumCash =
-                            min(beginningCash, endingCash);
+                            calculateMonthlyMinimumCash(
+                                    beginningCash,
+                                    currentMonth,
+                                    dailyReceivableMap,
+                                    dailyPayableMap,
+                                    fixedExpense
+                            );
 
                     rows.add(new CashFlowRow(
                             monthKey,
@@ -172,11 +184,75 @@ public class CashFlowServlet extends HttpServlet {
         return map;
     }
 
-    private BigDecimal min(BigDecimal a, BigDecimal b) {
-        if (a.compareTo(b) <= 0) {
-            return a;
-        } else {
-            return b;
+    private Map<LocalDate, BigDecimal> getDailyTotal(Connection conn,
+                                                     String tableName,
+                                                     LocalDate startDate,
+                                                     LocalDate endDateExclusive) throws Exception {
+
+        Map<LocalDate, BigDecimal> map = new HashMap<>();
+
+        String sql =
+                "SELECT expected_date AS date_key, " +
+                "       COALESCE(SUM(amount), 0) AS total_amount " +
+                "FROM " + tableName + " " +
+                "WHERE expected_date >= ? " +
+                "  AND expected_date < ? " +
+                "GROUP BY expected_date";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(startDate));
+            stmt.setDate(2, Date.valueOf(endDateExclusive));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    LocalDate dateKey = rs.getDate("date_key").toLocalDate();
+                    BigDecimal totalAmount = rs.getBigDecimal("total_amount");
+
+                    map.put(dateKey, totalAmount);
+                }
+            }
         }
+
+        return map;
+    }
+
+    private BigDecimal calculateMonthlyMinimumCash(BigDecimal beginningCash,
+                                                   YearMonth currentMonth,
+                                                   Map<LocalDate, BigDecimal> dailyReceivableMap,
+                                                   Map<LocalDate, BigDecimal> dailyPayableMap,
+                                                   BigDecimal fixedExpense) {
+
+        LocalDate day = currentMonth.atDay(1);
+        LocalDate nextMonthFirstDay = currentMonth.plusMonths(1).atDay(1);
+
+        BigDecimal cash = beginningCash;
+        BigDecimal minimumCash = beginningCash;
+
+        boolean fixedExpensePaid = false;
+
+        while (day.isBefore(nextMonthFirstDay)) {
+
+            BigDecimal dailyReceivable =
+                    dailyReceivableMap.getOrDefault(day, BigDecimal.ZERO);
+
+            BigDecimal dailyPayable =
+                    dailyPayableMap.getOrDefault(day, BigDecimal.ZERO);
+
+            cash = cash.add(dailyReceivable);
+            cash = cash.subtract(dailyPayable);
+
+            if (!fixedExpensePaid) {
+                cash = cash.subtract(fixedExpense);
+                fixedExpensePaid = true;
+            }
+
+            if (cash.compareTo(minimumCash) < 0) {
+                minimumCash = cash;
+            }
+
+            day = day.plusDays(1);
+        }
+
+        return minimumCash;
     }
 }
