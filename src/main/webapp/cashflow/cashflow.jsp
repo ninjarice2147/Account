@@ -9,37 +9,7 @@
     <meta charset="UTF-8">
     <title>月現金流預測表</title>
 
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th {
-            background-color: #1f4e79;
-            color: white;
-        }
-
-        th, td {
-            border: 1px solid #cccccc;
-            padding: 8px;
-            text-align: right;
-        }
-
-        th:first-child,
-        td:first-child {
-            text-align: left;
-        }
-
-        .form-area {
-            margin-bottom: 20px;
-        }
-
-        .error {
-            color: red;
-        }
-    </style>
-</head>
+    <head>
 <body>
     <h1>月現金流預測表</h1>
 
@@ -85,7 +55,7 @@
 
         if (rows != null) {
     %>
-        <table>
+        <table border="1">
             <tr>
                 <th>月份</th>
                 <th>月初現金</th>
