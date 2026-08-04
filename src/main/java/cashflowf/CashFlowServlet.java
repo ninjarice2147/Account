@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/cashflow")
+@WebServlet("/cashflowf")
 public class CashFlowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
