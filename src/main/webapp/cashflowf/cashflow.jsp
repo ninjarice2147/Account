@@ -34,7 +34,7 @@
     <h1>月現金流預測表</h1>
 
     <div>
-        <form action="<%= request.getContextPath() %>/cashflow" method="post">
+        <form action="<%= request.getContextPath() %>/cashflowf" method="post">
             <p>
                 開始月份：
                 <input type="month" name="startMonth"
