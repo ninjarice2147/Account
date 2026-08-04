@@ -74,12 +74,13 @@
     %>
 
         <h2>現金流折線圖</h2>
-
+		<!-- 生成cashFlowChart畫布 -->
         <div class="chart-area">
             <canvas id="cashFlowChart"></canvas>
         </div>
 
         <script>
+        	//把row裡的資料轉成js陣列
             const labels = [
                 <%
                     for (int i = 0; i < rows.size(); i++) {
@@ -123,11 +124,11 @@
                     }
                 %>
             ];
-
+			//0線
             const zeroLineData = labels.map(function() {
                 return 0;
             });
-
+			//找到cashFlowChart畫布
             const ctx = document.getElementById("cashFlowChart");
 
             new Chart(ctx, {
