@@ -1,0 +1,21 @@
+
+footer.footer{
+  /* border: 1px solid red; */
+  font-size: 1.6rem;
+  min-width: var(--page-width);
+  background-color: var(--bg-color);
+  text-align: center;
+  padding: 19px 0;
+  color: white;
+  box-shadow: 0 -1px 3px gray;
+}
+footer.footer span.text{
+  color: white;
+  display: block;
+  font-size: 1.2rem;
+  margin-top:5px;
+}
+footer.footer span.text a{
+  color: white;
+
+}

@@ -1,0 +1,8 @@
+*{
+  box-sizing: border-box;
+}
+html{
+  font-size: 62.5%;
+  --page-width:1200px;
+  --bg-color:#3d5b8c;
+}

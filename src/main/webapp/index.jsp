@@ -112,6 +112,13 @@
                 </p>
                 <a href="<%= request.getContextPath() %>/cashflowf">進入現金流預測</a>
             </div>
+            <div class="card">
+                <h2>自我介紹</h2>
+                <p>
+                    自我介紹網站
+                </p>
+                <a href="<%= request.getContextPath() %>/introduce/html/home_page.html">進入自我介紹頁面</a>
+            </div>
 
         </div>
     </div>

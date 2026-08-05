@@ -1,0 +1,66 @@
+/* 上方背景圖 */
+
+div.top_images{
+  min-width:var(--page-width);
+  background-color: var(--bg-color);
+}
+div.top_images ul.top_images_list{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding: 20px 0;
+  margin: 0 auto;
+  list-style: none;
+}
+div.top_images ul.top_images_list>li{
+  display:inline-block;
+  border: 1px solid red;
+  height: 400px;
+  width: calc(100% / 2.2);
+}
+div.top_images ul.top_images_list>li div.top_image_left,div.top_images ul.top_images_list>li div.top_image_right{
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+}
+div.top_images ul.top_images_list>li div.top_image_left{
+  background-image: url("../images/1.jpg");
+}
+div.top_images ul.top_images_list>li div.top_image_right{
+  background-image: url("../images/EMA.jpg");
+}
+/* 中間主要區域  */
+div.main_block{
+  /* border: 1px solid blue; */
+  min-width: var(--page-width);
+  min-height: calc(100vh - 60px - 200px - 85px);
+  font-size: 1.6rem;
+  background-color: var(--bg-color);
+}
+  /* 文字 */
+div.main_block div.inner_block{
+  /* border: 1px solid red; */
+  min-width: var(--page-width);
+  /* margin:0 auto; */
+  font-size:0;
+}
+    /* 主要內容 */
+div.main_block div.inner_block main.main{
+  /* border: 1px solid gray; */
+  margin:0 auto;
+  display:block;
+  vertical-align: top;
+  font-size: 1.6rem;
+  padding: 20px;
+  background-color: hsla(355, 100%, 77%, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 0 5px lightgray inset;
+  width: 90%;
+}
+div.main_block div.inner_block main.main pre.main_text{
+  margin: 0;
+  padding: 0;
+}

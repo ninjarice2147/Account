@@ -1,0 +1,146 @@
+/* 背景 */
+header.header{
+  font-size: 1.6rem;
+  /* border: 1px solid red; */
+  width: 100%;
+  min-width: var(--page-width);
+  background: linear-gradient(to bottom,#6ec6e7,#a8e6cf);
+  margin: 0 auto;
+}
+header.header div.block{
+  /* border: 1px solid blue; */
+  border-left: 1px dotted #bbb;
+  border-right: 1px dotted #bbb;
+  width: var(--page-width);
+  margin: 0 auto;
+}
+header.header div.block nav.nav{
+  /* border: 1px solid black; */
+  font-size: 0;
+}
+  /* 向下降 */
+header.header div.block nav.nav::after{
+  display:block;
+  font-size: 16px;
+  clear: both;
+  content: ""
+}
+/* logo圖片 */
+header.header div.block nav.nav>a.logo{
+  /* border: 1px solid green; */
+  /* display: inline-block; */
+  vertical-align: top;
+}
+header.header div.block nav.nav>a.logo img{
+  height: 60px;
+}
+/* 清單 */
+header.header div.block nav.nav ul.ul_list{
+  /* border: 1px solid red; */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 30px;
+}
+header.header div.block nav.nav ul.ul_list>li{
+  /* border: 1px solid blue; */
+  display: inline-block;
+  vertical-align: top;
+
+}
+header.header div.block nav.nav ul.ul_list>li>a{
+  /* border: 1px solid red; */
+  padding: 17px 20px;
+  font-size: 1.8rem;
+  text-decoration: none;
+  display: inline-block;
+  color: gray;
+}
+header.header div.block nav.nav ul.ul_list>li>a:hover{
+  color: black;
+  background:linear-gradient(to top,#ff8b94 2%,#6ec6e7 98%);
+  box-shadow: 0 -2px 2px #a8e6cf;
+}
+/* 社群連結 */
+header.header div.block nav.nav div.share_block{
+  /* border: 1px solid green; */
+  font-size: 1.8rem;
+  float: right;
+  position: relative;
+}
+header.header div.block nav.nav div.share_block span.share_text{
+  display: inline-block;
+  color: gray;
+  padding: 17px 20px;
+  font-size: 1.8rem;
+  cursor: default;
+}
+header.header div.block nav.nav div.share_block span.share_text:hover{
+  color: black;
+  background:linear-gradient(to top,#ff8b94 2%,#6ec6e7 98%);
+  box-shadow: 0 -2px 2px #a8e6cf;
+}
+  /* 社群連結顯示清單 */
+header.header div.block nav.nav div.share_block:hover ul.share_list{
+  display: block;
+}
+  /* 三角形 */
+header.header div.block nav.nav div.share_block span.share_text::after{
+  content:"";
+  display: inline-block;
+  border-top: 8px solid gray;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  position: relative;
+  top :-2px;
+  margin-left:5px;
+}
+header.header div.block nav.nav div.share_block span.share_text:hover::after{
+  border-top:8px solid black;
+}
+/* 社群連結清單 */
+header.header div.block nav.nav div.share_block ul.share_list{
+  border: 1px solid black;
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  background-color:#a8e6cf;
+  display: none;
+}
+header.header div.block nav.nav div.share_block ul.share_list >li{
+  /* border: 1px solid red; */
+  position: relative;
+}
+header.header div.block nav.nav div.share_block ul.share_list >li>a{
+  /* border: 1px solid blue; */
+  color: black;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+}
+  /* 橫線 */
+header.header div.block nav.nav div.share_block ul.share_list >li::after{
+  position: absolute;
+  display: inline-block;
+  content: "";
+  border-top:1px solid white;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header.header div.block nav.nav div.share_block ul.share_list >li:last-child::after{
+  display: none;
+}
+  /* 社群連結清單被指定 */
+header.header div.block nav.nav div.share_block ul.share_list >li>a:hover{
+  color: black;
+  background:linear-gradient(to top,#ff8b94 2%,#6ec6e7 98%);
+  box-shadow: 0 -2px 2px #a8e6cf;
+}
