@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <meta charset="UTF-8">
     <title>新增帳戶</title>
 </head>
 <body>
-    <h1>新增帳戶</h1>
-
+    <h1>新增帳戶</h1>	
     <form action="<%=request.getContextPath()%>/addAccount" method="post">
         <p>
             銀行：

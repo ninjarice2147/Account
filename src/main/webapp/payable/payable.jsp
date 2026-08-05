@@ -5,17 +5,17 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" dir="ltr">
 <head>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <meta charset="utf-8">
     <title>應付款資料表</title>
 </head>
 <body>
     <h1>應付款資料表</h1>
+    <div class="page-actions">
+    	<a class="secondary" href="<%= request.getContextPath() %>/">回主控畫面</a>
+    	<a href="<%= request.getContextPath() %>/addPayable">新增應付資料</a>
+	</div>
 
-    <p>
-        <a href="<%= request.getContextPath() %>/addPayable">
-            <button type="button">新增應付資料</button>
-        </a>
-    </p>
 
     <hr>
 

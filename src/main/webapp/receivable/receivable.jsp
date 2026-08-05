@@ -4,15 +4,18 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" dir="ltr">
 <head>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	<meta charset="utf-8">
 	<title>應收款資料表</title>
 </head>
 <body>
 	<h1>應收款資料表</h1>
+	<div class="page-actions">
+    	<a class="secondary" href="<%= request.getContextPath() %>/">回主控畫面</a>
+    	<a href="<%= request.getContextPath() %>/addReceivable">新增應收款</a>
+	</div>
 	<p>
-  		<a href="<%= request.getContextPath() %>/addReceivable">
-  			<button type="button" >新增應收款</button>
-  		</a>
+  		
   	</p>
 	<hr>
 	<h2>收款列表</h2>
@@ -35,6 +38,8 @@
 				for (Receivable receivable:receivables){
 					String updateFormId="updateForm" + receivable.getId();
 					String deleteFormId="deleteForm" + receivable.getId();
+					
+					 String statusText = "PAID".equals(receivable.getStatus()) ? "已付款" : "未付款";
 					%>
 					<tr>
 						<td>
@@ -66,12 +71,29 @@
 							value="<%=receivable.getExpectedDate()%>" class="editable" readonly required>
 						</td>
 						<td>
-							<input type="text" form="<%=updateFormId%>" name="status" 
-							value="<%=receivable.getStatus()%>" class="editable" readonly required>
+						    <span class="status-text">
+						        <%= statusText %>
+						    </span>
+						
+						    <span class="status-radio" style="display:none;">
+						        <label>
+						            <input form="<%= updateFormId %>" type="radio"
+						                   name="status" value="UNRECEIVED"
+						                   <%= "UNRECEIVED".equals(receivable.getStatus()) ? "checked" : "" %>>
+						            未收款
+						        </label>
+						
+						        <label>
+						            <input form="<%= updateFormId %>" type="radio"
+						                   name="status" value="RECEIVED"
+						                   <%= "RECEIVED".equals(receivable.getStatus()) ? "checked" : "" %>>
+						            已收款
+						        </label>
+						    </span>
 						</td>
 						<td>
 							<input type="text" form="<%=updateFormId%>" name="note" 
-							value="<%=receivable.getNote()%>" class="editable" readonly required>
+							value="<%=receivable.getNote()%>" class="editable" readonly>
 						</td>
 						<td>
 							<%=receivable.getCreatedAt()%>
@@ -115,9 +137,16 @@
                         input.removeAttribute("readonly");
                     });
 
+                    const row = button.closest("tr");
+                    const statusText = row.querySelector(".status-text");
+                    const statusRadio = row.querySelector(".status-radio");
+
+                    statusText.style.display = "none";
+                    statusRadio.style.display = "inline";
+
                     button.textContent = "更新";
                     button.dataset.mode = "update";
-                } else {
+                }else {
                     const updateForm = document.getElementById(formId);
 
                     if (updateForm.requestSubmit) {
@@ -133,7 +162,7 @@
 
         deleteButtons.forEach(function(button) {
             button.addEventListener("click", function(event) {
-                const result = confirm("確定要刪除這筆帳戶資料嗎？");
+                const result = confirm("確定要刪除這筆應收款資料嗎？");
 
                 if (!result) {
                     event.preventDefault();

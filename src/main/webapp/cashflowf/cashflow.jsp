@@ -23,6 +23,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" dir="ltr">
 <head>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <meta charset="UTF-8">
     <title>月現金流預測表</title>
 
@@ -32,6 +33,9 @@
 
 <body>
     <h1>月現金流預測表</h1>
+    	<div class="page-actions">
+    	<a class="secondary" href="<%= request.getContextPath() %>/">回主控畫面</a>
+	</div>
 
     <div>
         <form action="<%= request.getContextPath() %>/cashflowf" method="post">
@@ -231,8 +235,5 @@
         }
     %>
 
-    <p>
-        <a href="<%= request.getContextPath() %>/accounts">回帳戶列表</a>
-    </p>
 </body>
 </html>

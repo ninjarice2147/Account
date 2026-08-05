@@ -5,18 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <meta charset="UTF-8">
     <title>銀行帳戶管理</title>
+
 </head>
 <body>
     <h1>銀行帳戶管理</h1>
-
-    <p>
-        <a href="addAccount">
-            <button type="button">新增帳戶</button>
-        </a>
-    </p>
-
+	<div class="page-actions">
+    	<a class="action-btn secondary" href="<%= request.getContextPath() %>/">回主控畫面</a>
+    	<a class="action-btn" href="<%= request.getContextPath() %>/addAccount">新增帳戶</a>
+	</div>
+    
+	
     <hr>
 
     <h2>帳戶列表</h2>

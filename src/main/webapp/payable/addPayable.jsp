@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" dir="ltr">
   <head>
+  	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <meta charset="utf-8">
     <title>新增付款項目</title>
   </head>
   <body>
 	<h1>新增付款項目</h1>
+	
 	<form action="<%=request.getContextPath()%>/addPayable" method="post">
 		<p>
 			付款對象名稱
@@ -40,6 +42,10 @@
 			<input type="text" name="note">
 		</p>
 		<button type="submit">新增</button>
+		
+		<p>
+        	<a href="<%=request.getContextPath()%>/payables">回到應付款資料表</a>
+    	</p>
 	</form>
 	
 	
