@@ -9,7 +9,7 @@
 <body>
     <h1>新增帳戶</h1>
 
-    <form action="addAccount" method="post">
+    <form action="<%=request.getContextPath()%>/addAccount" method="post">
         <p>
             銀行：
             <input type="text" name="bank" required>
@@ -29,7 +29,7 @@
     </form>
 
     <p>
-        <a href="accounts">回帳戶列表</a>
+        <a href="<%=request.getContextPath()%>/accounts">回帳戶列表</a>
     </p>
 </body>
 </html>

@@ -41,11 +41,11 @@
         %>
                     <tr>
                         <td>
-                            <form id="<%= updateFormId %>" action="updateAccount" method="post">
+                            <form id="<%= updateFormId %>" action="<%=request.getContextPath()%>/updateAccount" method="post">
                                 <input type="hidden" name="accId" value="<%= account.getAccId() %>">
                             </form>
 
-                            <form id="<%= deleteFormId %>" action="deleteAccount" method="post">
+                            <form id="<%= deleteFormId %>" action="<%=request.getContextPath()%>/deleteAccount" method="post">
                                 <input type="hidden" name="accId" value="<%= account.getAccId() %>">
                             </form>
 

@@ -26,7 +26,7 @@ public class AddAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/addAccount.jsp")
+        request.getRequestDispatcher("/account/addAccount.jsp")
                .forward(request, response);
     }
 

@@ -55,7 +55,7 @@ public class AccountServlet extends HttpServlet {
             }
 
             request.setAttribute("accounts", accounts);
-            request.getRequestDispatcher("/account.jsp")
+            request.getRequestDispatcher("/account/account.jsp")
                    .forward(request, response);
 
         } catch (Exception e) {

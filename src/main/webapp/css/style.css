@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    background-color: #f4f6f8;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #1f4e79;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 24px 0;
+}
+
+a {
+    color: #1f4e79;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button,
+input[type="submit"] {
+    background-color: #1f4e79;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #163a59;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: 20px auto;
+    background-color: white;
+}
+
+th {
+    background-color: #1f4e79;
+    color: white;
+}
+
+th, td {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    text-align: center;
+}
+
+td input[type="text"],
+td input[type="number"],
+td input[type="date"] {
+    width: 95%;
+    box-sizing: border-box;
+}
+
+input,
+select,
+textarea {
+    padding: 6px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-area {
+    width: 420px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.form-area p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-area button {
+    display: block;
+    margin: 16px auto 0 auto;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.chart-area {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.top-link {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #dddddd;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card p {
+    line-height: 1.6;
+    color: #555555;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 18px;
+    background-color: #1f4e79;
+    color: white;
+    border-radius: 4px;
+}
+
+.card a:hover {
+    background-color: #163a59;
+    text-decoration: none;
+}
