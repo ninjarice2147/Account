@@ -110,7 +110,7 @@
                 <p>
                     依照帳戶現金、應收款、應付款與固定支出，產生月現金流預測表與折線圖。
                 </p>
-                <a href="<%= request.getContextPath() %>/cashflowf">進入現金流預測</a>
+                <a href="<%= request.getContextPath() %>/cashflow">進入現金流預測</a>
             </div>
             <div class="card">
                 <h2>自我介紹</h2>

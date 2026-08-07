@@ -45,7 +45,7 @@ public class AddAccountServlet extends HttpServlet {
 
             try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
 
-                String sql = "INSERT INTO receivable (bank, acc_name, amount) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO account (bank, acc_name, amount) VALUES (?, ?, ?)";
 
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                     stmt.setString(1, bank);

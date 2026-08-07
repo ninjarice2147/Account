@@ -3,18 +3,24 @@ package cashflow;
 import java.math.BigDecimal;
 
 public class CashFlowRow {
-	private String month;
-	private BigDecimal beginningCash;
-	private BigDecimal monthlyReceivable;
-	private BigDecimal monthlyPayable;
-	private BigDecimal fixedExpense;
-	private BigDecimal netCashFlow;
-	private BigDecimal endingCash;
-	private BigDecimal minimumCash;
-	
-	public CashFlowRow(String month,BigDecimal beginningCash,BigDecimal monthlyReceivable,BigDecimal monthlyPayable,
-            BigDecimal fixedExpense, BigDecimal netCashFlow, BigDecimal endingCash, BigDecimal minimumCash) {
-		this.month = month;
+    private String month;
+    private BigDecimal beginningCash;
+    private BigDecimal monthlyReceivable;
+    private BigDecimal monthlyPayable;
+    private BigDecimal fixedExpense;
+    private BigDecimal netCashFlow;
+    private BigDecimal endingCash;
+    private BigDecimal minimumCash;
+
+    public CashFlowRow(String month,
+                       BigDecimal beginningCash,
+                       BigDecimal monthlyReceivable,
+                       BigDecimal monthlyPayable,
+                       BigDecimal fixedExpense,
+                       BigDecimal netCashFlow,
+                       BigDecimal endingCash,
+                       BigDecimal minimumCash) {
+        this.month = month;
         this.beginningCash = beginningCash;
         this.monthlyReceivable = monthlyReceivable;
         this.monthlyPayable = monthlyPayable;
@@ -22,12 +28,13 @@ public class CashFlowRow {
         this.netCashFlow = netCashFlow;
         this.endingCash = endingCash;
         this.minimumCash = minimumCash;
-	}
-	
-	public String getMonth(){
-		return month;
-	}
-	public BigDecimal getBeginningCash() {
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public BigDecimal getBeginningCash() {
         return beginningCash;
     }
 
@@ -54,12 +61,4 @@ public class CashFlowRow {
     public BigDecimal getMinimumCash() {
         return minimumCash;
     }
-
-	
-	
-	
-	
-	
-	
-	
 }
