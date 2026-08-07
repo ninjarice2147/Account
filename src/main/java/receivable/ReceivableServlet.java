@@ -3,7 +3,6 @@ package receivable;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -14,14 +13,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.DBUtil;
 
 @WebServlet("/receivables")
 public class ReceivableServlet extends HttpServlet{
 	private static final long serialVersionUID=1L;
-	private static final String DB_URL=
-		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
-	private static final String DB_USER="jsp_user";
-	private static final String DB_PASSWORD="Cookie1007";
 	
 	@Override
 	protected void doGet(HttpServletRequest request,HttpServletResponse response)
@@ -29,9 +25,7 @@ public class ReceivableServlet extends HttpServlet{
 		
 		List<Receivable> receivables=new ArrayList<>();
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
+			try(Connection conn=DBUtil.getConnection()){
 				
 				String sql = 
 	"SELECT id, customer_name, title, amount, expected_date, status, note, created_at, updated_at FROM receivable ORDER BY id";
@@ -55,7 +49,7 @@ public class ReceivableServlet extends HttpServlet{
 				}
 				
 			}
-		}catch (Exception e) {
+			catch (Exception e) {
 			throw new ServletException("讀取帳戶失敗",e);
 		}
 		

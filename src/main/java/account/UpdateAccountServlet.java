@@ -11,16 +11,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.DBUtil;
 
 @WebServlet("/updateAccount")
 public class UpdateAccountServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    private static final String DB_URL =
-            "jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
-
-    private static final String DB_USER = "jsp_user";
-    private static final String DB_PASSWORD = "Cookie1007";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -33,10 +28,7 @@ public class UpdateAccountServlet extends HttpServlet {
         String accName = request.getParameter("accName");
         BigDecimal amount = new BigDecimal(request.getParameter("amount"));
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection conn = DBUtil.getConnection()) {
 
                 String sql = "UPDATE account SET bank = ?, acc_name = ?, amount = ? WHERE acc_id = ?";
 
@@ -48,11 +40,8 @@ public class UpdateAccountServlet extends HttpServlet {
 
                     stmt.executeUpdate();
                 }
-            }
-
-            response.sendRedirect(request.getContextPath() + "/accounts");
-
-        } catch (Exception e) {
+                response.sendRedirect(request.getContextPath() + "/accounts");
+            }catch (Exception e) {
             throw new ServletException("更新帳戶資料失敗", e);
         }
     }

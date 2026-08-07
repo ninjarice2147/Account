@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -19,15 +18,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.DBUtil;
 
 @WebServlet("/cashflow")
 public class CashFlowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    private static final String DB_URL =
-            "jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
-    private static final String DB_USER = "jsp_user";
-    private static final String DB_PASSWORD = "Cookie1007";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +43,6 @@ public class CashFlowServlet extends HttpServlet {
         String fixedExpenseText = request.getParameter("fixedExpense");
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
             YearMonth startMonth = YearMonth.parse(startMonthText);
             YearMonth endMonth = YearMonth.parse(endMonthText);
@@ -66,7 +60,7 @@ public class CashFlowServlet extends HttpServlet {
             
             List<CashFlowRow> rows = new ArrayList<>();
 
-            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection conn =DBUtil.getConnection()) {
 
                 BigDecimal beginningCash = getCurrentCash(conn);
                 //各預計加總
