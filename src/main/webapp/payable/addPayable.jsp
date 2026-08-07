@@ -15,7 +15,7 @@
 			<input type="text" name="vendorName" required>
 		</p>
 		<p>
-			收款項目
+			付款項目
 			<input type="text" name="title" required>
 		</p>
 		<p>
