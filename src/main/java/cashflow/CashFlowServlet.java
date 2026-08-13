@@ -28,8 +28,16 @@ public class CashFlowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/cashflow/cashflow.jsp")
-               .forward(request, response);
+        YearMonth  endMonth= YearMonth.now();
+        YearMonth startMonth = endMonth.plusMonths(-6);
+
+        showCashFlowPage(
+                request,
+                response,
+                startMonth.toString(),
+                endMonth.toString(),
+                "0"
+        );
     }
 
     @Override
@@ -41,29 +49,45 @@ public class CashFlowServlet extends HttpServlet {
         String startMonthText = request.getParameter("startMonth");
         String endMonthText = request.getParameter("endMonth");
         String fixedExpenseText = request.getParameter("fixedExpense");
-        
-        try {
 
+        showCashFlowPage(
+                request,
+                response,
+                startMonthText,
+                endMonthText,
+                fixedExpenseText
+        );
+    }
+    
+    //主要運轉程式
+    private void showCashFlowPage(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            String startMonthText,
+            String endMonthText,
+            String fixedExpenseText
+    ) throws ServletException, IOException {
+
+        try {
             YearMonth startMonth = YearMonth.parse(startMonthText);
             YearMonth endMonth = YearMonth.parse(endMonthText);
             BigDecimal fixedExpense = new BigDecimal(fixedExpenseText);
-            //檢查結束沒早於開始
+
             if (endMonth.isBefore(startMonth)) {
                 request.setAttribute("error", "結束月份不能早於開始月份");
                 request.getRequestDispatcher("/cashflow/cashflow.jsp")
                        .forward(request, response);
                 return;
             }
-            //開始結束日期
+
             LocalDate startDate = startMonth.atDay(1);
             LocalDate endDateExclusive = endMonth.plusMonths(1).atDay(1);
-            
+
             List<CashFlowRow> rows = new ArrayList<>();
 
-            try (Connection conn =DBUtil.getConnection()) {
-
+            try (Connection conn = DBUtil.getConnection()) {
                 BigDecimal beginningCash = getCurrentCash(conn);
-                //各預計加總
+
                 Map<String, BigDecimal> monthlyReceivableMap =
                         getMonthlyTotal(conn, "receivable", startDate, endDateExclusive);
 
@@ -75,24 +99,24 @@ public class CashFlowServlet extends HttpServlet {
 
                 Map<LocalDate, BigDecimal> dailyPayableMap =
                         getDailyTotal(conn, "payable", startDate, endDateExclusive);
-                
+
                 YearMonth currentMonth = startMonth;
-                //計算最小金額 應付 應收 現金流 月尾金額
+
                 while (!currentMonth.isAfter(endMonth)) {
                     String monthKey = currentMonth.toString();
-                    //加總每"月"應收
+
                     BigDecimal monthlyReceivable =
                             monthlyReceivableMap.getOrDefault(monthKey, BigDecimal.ZERO);
-                    //加總每"月"應付
+
                     BigDecimal monthlyPayable =
                             monthlyPayableMap.getOrDefault(monthKey, BigDecimal.ZERO);
-                    //加總每"日"應收
+
                     BigDecimal netCashFlow =
                             monthlyReceivable.subtract(monthlyPayable).subtract(fixedExpense);
-                    //加總每"日"應付
+
                     BigDecimal endingCash =
                             beginningCash.add(netCashFlow);
-                    //獲得月中最小金額
+
                     BigDecimal minimumCash =
                             calculateMonthlyMinimumCash(
                                     beginningCash,
@@ -101,7 +125,7 @@ public class CashFlowServlet extends HttpServlet {
                                     dailyPayableMap,
                                     fixedExpense
                             );
-                    //存入rows
+
                     rows.add(new CashFlowRow(
                             monthKey,
                             beginningCash,
@@ -117,7 +141,7 @@ public class CashFlowServlet extends HttpServlet {
                     currentMonth = currentMonth.plusMonths(1);
                 }
             }
-            //傳去jsp
+
             request.setAttribute("rows", rows);
             request.setAttribute("startMonth", startMonthText);
             request.setAttribute("endMonth", endMonthText);
@@ -251,4 +275,6 @@ public class CashFlowServlet extends HttpServlet {
 
         return minimumCash;
     }
+    
+    
 }
